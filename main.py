@@ -1,10 +1,18 @@
+from flask import Flask, request, render_template, redirect, url_for
 from api.request import get_stock_data
-from banner.criacao import generate_html
+app = Flask(__name__)
 
-TOKEN = "dPfxHbd2pub9wVrtzbQ5AA"
-TICKERS = ["CRFB3", "AZUL4", "HAPV3", "COGN3", "B3SA3", "ITSA4", "PETR4"]
+@app.route("/")
+def homepage():
+    tickers = ["AZUL4", "CRFB3", "HAPV3", "COGN3", "B3SA3", "ITSA4", "PETR4"]
+    token = "dPfxHbd2pub9wVrtzbQ5AA"
+    acoes = []
+    for ticker in tickers:
+        acao = get_stock_data(ticker, token)
+        if acao:
+          acoes.append(acao)
 
-for ticker in TICKERS:
-    stock_data = get_stock_data(ticker, TOKEN)
-    if stock_data:
-        generate_html(stock_data, f"banner_{ticker}.html")
+    return render_template("index.html", acoes=acoes)
+
+if __name__ == '__main__':
+    app.run(debug=True)
