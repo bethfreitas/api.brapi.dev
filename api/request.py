@@ -9,12 +9,11 @@ def get_stock_data(ticker, token):
         data = response.json()["results"][0]
         return {
             "nome": data.get("longName", "Desconhecido"),
-            "simbolo": data.get("symbol", simbolo),
+            "simbolo": data.get("symbol", ticker),
             "preco": data.get("regularMarketPrice", 0),
             "variacao": data.get("regularMarketChangePercent", 0),
-            "logo": data.get("logourl", "")
+            "logo": data.get("logo url", "")
         }
-        return Nome
     else:
         print(f"Erro ao acessar API ({ticker}): {response.status_code}")
         return None

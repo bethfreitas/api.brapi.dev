@@ -10,8 +10,8 @@
     <div class="container">
         <h1>Resumo das Ações</h1>
         <div class="acoes-container">
-            {% for acoes in acao %}
-                <div class="acao-card">
+            {% for acao in acoes %}
+                <div class="acoes-card">
                     <img src="{{ acao.logo }}" alt="{{ acao.simbolo }}" class="logo">
                     <h2>{{ acao.simbolo }}</h2>
                     <p class="nome">{{ acao.nome }}</p>

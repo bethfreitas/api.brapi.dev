@@ -8,9 +8,9 @@ def homepage():
     token = "dPfxHbd2pub9wVrtzbQ5AA"
     acoes = []
     for ticker in tickers:
-        acao = get_stock_data(ticker, token)
-        if acao:
-          acoes.append(acao)
+        verde= get_stock_data(ticker, token)
+        if verde:
+           acoes.append(verde)
 
     return render_template("index.html", acoes=acoes)
 
