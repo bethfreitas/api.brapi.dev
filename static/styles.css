@@ -1,106 +1,192 @@
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilização do body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%); /* Gradiente suave */
+    color: #1f2a44;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    line-height: 1.5;
 }
 
+/* Container principal */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px; /* Aumentado para telas maiores */
     margin: 0 auto;
     text-align: center;
 }
 
+/* Título principal */
 h1 {
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 40px;
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    color: #1f2a44;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #3b82f6, #10b981); /* Gradiente no texto */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
+/* Container das ações */
 .acoes-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Layout mais flexível */
+    gap: 24px;
     justify-content: center;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
+/* Card de ações */
 .acoes-card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 160px;
-    padding: 15px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.2s ease;
-    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Efeito hover no card */
 .acoes-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
+/* Logo da ação */
 .logo {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
     object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
+.acoes-card:hover .logo {
+    transform: scale(1.1); /* Zoom suave na logo */
+}
+
+/* Título do card */
 h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.nome {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.preco {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
     margin-bottom: 6px;
+    color: #1f2a44;
 }
 
+/* Nome da ação */
+.nome {
+    font-size: 0.875rem; /* 14px */
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-align: center;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Para nomes longos */
+}
+
+/* Preço da ação */
+.preco {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1f2a44;
+}
+
+/* Variação da ação */
 .variacao {
-    font-size: 13px;
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 12px;
 }
 
+/* Cores para variação */
 .variacao.positivo {
-    color: green;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1); /* Fundo leve */
 }
 
 .variacao.negativo {
-    color: red;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1); /* Fundo leve */
 }
 
-/* Para telas menores */
+/* Animação de entrada para os cards */
+.acoes-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay progressivo para animação dos cards */
+.acoes-container .acoes-card:nth-child(1) { animation-delay: 0.1s; }
+.acoes-container .acoes-card:nth-child(2) { animation-delay: 0.2s; }
+.acoes-container .acoes-card:nth-child(3) { animation-delay: 0.3s; }
+.acoes-container .acoes-card:nth-child(4) { animation-delay: 0.4s; }
+.acoes-container .acoes-card:nth-child(5) { animation-delay: 0.5s; }
+.acoes-container .acoes-card:nth-child(6) { animation-delay: 0.6s; }
+.acoes-container .acoes-card:nth-child(7) { animation-delay: 0.7s; }
+
+/* Responsividade */
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* 32px */
+    }
+
     .acoes-container {
+        display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: flex-start;
-        padding-bottom: 15px;
-        -webkit-overflow-scrolling: touch; /* Para melhor scroll em dispositivos iOS */
+        padding-bottom: 20px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
 
     .acoes-card {
         flex-shrink: 0;
+        width: 160px;
+        scroll-snap-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem; /* 28px */
+    }
+
+    .acoes-card {
+        width: 140px;
+        padding: 16px;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
     }
 }
